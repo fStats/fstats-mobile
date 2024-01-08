@@ -7,7 +7,6 @@ import dev.syoritohatsuki.fstatsmobile.data.dto.User
 interface FStatsApi {
     suspend fun login(username: String, password: String): Map<String, String>
     suspend fun register(username: String, password: String): Boolean
-
     suspend fun getUsers(): Array<User>
     suspend fun getProjects(): Array<Project>
     suspend fun getProjectByUserId(userId: Int): Array<Project>
