@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 data class Project(
     val id: Int = -1,
     val name: String = "",
-    val ownerId: Int = -1
+    val owner: User
 )
