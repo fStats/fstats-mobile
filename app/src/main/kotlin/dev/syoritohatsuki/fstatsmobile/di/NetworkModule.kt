@@ -22,7 +22,7 @@ val networkModule = module {
 private fun provideKtorClient(): HttpClient {
     return HttpClient(Android) {
         expectSuccess = true
-        install(ContentNegotiation){
+        install(ContentNegotiation) {
             json(Json {
                 ignoreUnknownKeys = true
             })
