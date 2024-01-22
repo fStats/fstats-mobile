@@ -16,16 +16,16 @@ class FStatsApiImpl(private val httpClient: HttpClient) : FStatsApi {
     override suspend fun register(username: String, password: String): Boolean =
         httpClient.post("auth/registration").body()
 
-    override suspend fun getUsers(): Array<User> =
+    override suspend fun getUsers(): List<User> =
         httpClient.get("users").body()
 
-    override suspend fun getProjects(): Array<Project> =
+    override suspend fun getProjects(): List<Project> =
         httpClient.get("projects").body()
 
-    override suspend fun getProjectByUserId(userId: Int): Array<Project> =
+    override suspend fun getProjectByUserId(userId: Int): List<Project> =
         httpClient.get("users/$userId/projects").body()
 
-    override suspend fun getMetrics(projectId: Int): Array<Metric> =
+    override suspend fun getMetrics(projectId: Int): List<Metric> =
         httpClient.get("metrics/$projectId").body()
 
     override suspend fun getMetricsCount(projectId: Int): Map<String, Map<String, Int>> =
