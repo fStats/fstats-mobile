@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "dev.syoritohatsuki.fstatsmobile"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "dev.syoritohatsuki.fstatsmobile"
         minSdk = 26
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -42,7 +42,7 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.3.2"
     }
-    packagingOptions {
+    packaging {
         resources {
             excludes.add("/META-INF/{AL2.0,LGPL2.1}")
         }
@@ -51,7 +51,8 @@ android {
 
 dependencies {
 
-//    implementation("co.yml", "ycharts", "2.0.0")
+implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+    //    implementation("co.yml", "ycharts", "2.0.0")
 
     val ktorVersion = "2.3.1"
     implementation("io.ktor", "ktor-client-core", ktorVersion)

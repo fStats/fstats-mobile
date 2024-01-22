@@ -1,4 +1,4 @@
-package dev.syoritohatsuki.fstatsmobile.ui.components
+package dev.syoritohatsuki.fstatsmobile.ui.projects.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -37,4 +38,10 @@ fun ProjectItem(projectName: String, ownerName: String) {
             )
         }
     }
+}
+
+@Preview
+@Composable
+fun ProjectItemPreview() {
+    ProjectItem(projectName = "Project Name", ownerName = "Owner Name")
 }

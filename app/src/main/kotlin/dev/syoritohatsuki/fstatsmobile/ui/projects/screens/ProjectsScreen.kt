@@ -1,30 +1,23 @@
-package dev.syoritohatsuki.fstatsmobile.ui.screens
+package dev.syoritohatsuki.fstatsmobile.ui.projects.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
-import dev.syoritohatsuki.fstatsmobile.data.api.FStatsApi
-import dev.syoritohatsuki.fstatsmobile.data.dto.Project
-import dev.syoritohatsuki.fstatsmobile.ui.components.ProjectItem
-import org.koin.java.KoinJavaComponent.inject
+import androidx.lifecycle.viewmodel.compose.viewModel
+import dev.syoritohatsuki.fstatsmobile.ui.projects.components.ProjectItem
+import dev.syoritohatsuki.fstatsmobile.ui.projects.viewmodel.ProjectsViewModel
 
 @Composable
 fun ProjectsScreen() {
 
-    val api by inject<FStatsApi>(FStatsApi::class.java)
+    val projectsViewModel: ProjectsViewModel = viewModel()
 
-    val projects = remember { mutableStateListOf<Project>() }
-
-    LaunchedEffect(key1 = "") {
-        projects.clear()
-        projects.addAll(api.getProjects())
-    }
+    val projects by projectsViewModel.movies.collectAsState()
 
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(16.dp),
