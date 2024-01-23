@@ -1,4 +1,4 @@
-package dev.syoritohatsuki.fstatsmobile.ui.projects.screens
+package dev.syoritohatsuki.fstatsmobile.screens.projects
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -9,11 +9,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import dev.syoritohatsuki.fstatsmobile.ui.projects.components.ProjectItem
-import dev.syoritohatsuki.fstatsmobile.ui.projects.viewmodel.ProjectsViewModel
+import androidx.navigation.NavHostController
+import dev.syoritohatsuki.fstatsmobile.screens.projects.components.ProjectItem
+import dev.syoritohatsuki.fstatsmobile.screens.projects.viewmodel.ProjectsViewModel
 
 @Composable
-fun ProjectsScreen() {
+fun ProjectsScreen(navController: NavHostController) {
 
     val projectsViewModel: ProjectsViewModel = viewModel()
 
@@ -26,7 +27,7 @@ fun ProjectsScreen() {
     ) {
         projects.forEach {
             item {
-                ProjectItem(it.name, it.owner.username)
+                ProjectItem(navController, it.name, it.owner.username)
             }
         }
     }

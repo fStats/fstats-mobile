@@ -51,7 +51,7 @@ android {
 
 dependencies {
 
-implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
     //    implementation("co.yml", "ycharts", "2.0.0")
 
     val ktorVersion = "2.3.1"
@@ -64,6 +64,8 @@ implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
     val koinVersion = "3.4.1"
     implementation("io.insert-koin", "koin-android", koinVersion)
     implementation("io.insert-koin", "koin-ktor", koinVersion)
+
+    implementation("androidx.navigation", "navigation-compose", "2.7.6")
 
     implementation("androidx.core", "core-ktx", "1.10.1")
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))

@@ -1,4 +1,4 @@
-package dev.syoritohatsuki.fstatsmobile.ui.projects.components
+package dev.syoritohatsuki.fstatsmobile.screens.projects.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -13,9 +13,11 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun ProjectItem(projectName: String, ownerName: String) {
+fun ProjectItem(navController: NavController, projectName: String, ownerName: String) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         elevation = CardDefaults.cardElevation(
@@ -43,5 +45,5 @@ fun ProjectItem(projectName: String, ownerName: String) {
 @Preview
 @Composable
 fun ProjectItemPreview() {
-    ProjectItem(projectName = "Project Name", ownerName = "Owner Name")
+    ProjectItem(rememberNavController(), projectName = "Project Name", ownerName = "Owner Name")
 }

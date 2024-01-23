@@ -1,4 +1,4 @@
-package dev.syoritohatsuki.fstatsmobile.ui.projects.viewmodel
+package dev.syoritohatsuki.fstatsmobile.screens.projects.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
