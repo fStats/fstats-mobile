@@ -5,4 +5,5 @@ sealed class Screens(val route: String, val argument: String = "") {
     object Projects : Screens("projects")
     object Profile : Screens("profile")
     object Project : Screens("project/{projectId}", "projectId")
+    object About : Screens("about")
 }
