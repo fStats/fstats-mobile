@@ -15,28 +15,33 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import dev.syoritohatsuki.fstatsmobile.data.dto.Project
+import dev.syoritohatsuki.fstatsmobile.data.dto.User
 
 @Composable
-fun ProjectItem(navController: NavController, projectName: String, ownerName: String) {
+fun ProjectItem(navController: NavController, project: Project) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 4.dp
         ),
     ) {
-        Column(modifier = Modifier
-            .clickable {}
-            .padding(8.dp)) {
+        Column(
+            modifier = Modifier
+                .clickable {
+                    navController.navigate("project/${project.id}")
+                }
+                .padding(8.dp)) {
             Text(
                 modifier = Modifier.fillMaxWidth(),
                 overflow = TextOverflow.Ellipsis,
                 fontSize = 20.sp,
-                text = projectName,
+                text = project.name,
             )
             Text(
                 modifier = Modifier.fillMaxWidth(),
                 overflow = TextOverflow.Ellipsis,
-                text = ownerName
+                text = project.owner.username
             )
         }
     }
@@ -45,5 +50,12 @@ fun ProjectItem(navController: NavController, projectName: String, ownerName: St
 @Preview
 @Composable
 fun ProjectItemPreview() {
-    ProjectItem(rememberNavController(), projectName = "Project Name", ownerName = "Owner Name")
+    ProjectItem(
+        rememberNavController(), Project(
+            name = "Preview Project",
+            owner = User(
+                username = "Preview Name"
+            )
+        )
+    )
 }

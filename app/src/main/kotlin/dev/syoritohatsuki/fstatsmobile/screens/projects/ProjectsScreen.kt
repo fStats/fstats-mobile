@@ -27,7 +27,7 @@ fun ProjectsScreen(navController: NavHostController) {
     ) {
         projects.forEach {
             item {
-                ProjectItem(navController, it.name, it.owner.username)
+                ProjectItem(navController, it)
             }
         }
     }
