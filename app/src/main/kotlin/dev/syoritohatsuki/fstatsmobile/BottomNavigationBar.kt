@@ -26,6 +26,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import dev.syoritohatsuki.fstatsmobile.screens.about.AboutScreen
+import dev.syoritohatsuki.fstatsmobile.screens.project.ProjectScreen
 import dev.syoritohatsuki.fstatsmobile.screens.projects.ProjectsScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -111,8 +112,7 @@ fun BottomNavigationBar() {
                 Screens.Project.route,
                 arguments = listOf(navArgument(Screens.Project.argument) { type = NavType.IntType })
             ) {
-                val projectId: Int? = navBackStackEntry?.arguments?.getInt(Screens.Project.argument)
-                Text(text = "Project id: $projectId")
+                ProjectScreen(navBackStackEntry)
             }
         }
     }
