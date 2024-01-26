@@ -44,10 +44,6 @@ import dev.syoritohatsuki.fstatsmobile.screens.project.viewmodel.ProjectViewMode
 import kotlinx.coroutines.launch
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
-import kotlin.random.Random
-
-
-val RANDOM = Random(System.currentTimeMillis())
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable

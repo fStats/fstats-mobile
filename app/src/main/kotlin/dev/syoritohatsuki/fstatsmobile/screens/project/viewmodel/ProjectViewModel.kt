@@ -42,6 +42,7 @@ class ProjectViewModel(private val projectId: Int) : ViewModel() {
     }
 }
 
+@Suppress("UNCHECKED_CAST")
 class ProjectViewModelFactory(private val projectId: Int) : ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel> create(modelClass: Class<T>): T = ProjectViewModel(projectId) as T
 }
