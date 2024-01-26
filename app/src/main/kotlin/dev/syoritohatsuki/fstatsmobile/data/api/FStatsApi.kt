@@ -2,6 +2,8 @@ package dev.syoritohatsuki.fstatsmobile.data.api
 
 import dev.syoritohatsuki.fstatsmobile.data.dto.Metric
 import dev.syoritohatsuki.fstatsmobile.data.dto.Project
+import dev.syoritohatsuki.fstatsmobile.data.dto.ProjectLine
+import dev.syoritohatsuki.fstatsmobile.data.dto.ProjectPie
 import dev.syoritohatsuki.fstatsmobile.data.dto.User
 
 interface FStatsApi {
@@ -11,5 +13,6 @@ interface FStatsApi {
     suspend fun getProjects(): List<Project>
     suspend fun getProjectByUserId(userId: Int): List<Project>
     suspend fun getMetrics(projectId: Int): List<Metric>
-    suspend fun getMetricsCount(projectId: Int): Map<String, Map<String, Int>>
+    suspend fun getMetricsLine(projectId: Int): ProjectLine
+    suspend fun getMetricsCount(projectId: Int): ProjectPie
 }

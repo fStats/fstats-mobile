@@ -14,8 +14,8 @@ class ProjectsViewModel : ViewModel() {
 
     private val api by KoinJavaComponent.inject<FStatsApi>(FStatsApi::class.java)
 
-    private val _movies = MutableStateFlow<List<Project>>(emptyList())
-    val movies: StateFlow<List<Project>> = _movies
+    private val _projects = MutableStateFlow<List<Project>>(emptyList())
+    val projects: StateFlow<List<Project>> = _projects
 
     init {
         fetchProjects()
@@ -23,8 +23,8 @@ class ProjectsViewModel : ViewModel() {
 
     private fun fetchProjects() {
         viewModelScope.launch(Dispatchers.IO) {
-            val fetchedMovies = api.getProjects()
-            _movies.emit(fetchedMovies)
+            val fetchedProjects = api.getProjects()
+            _projects.emit(fetchedProjects)
         }
     }
 }

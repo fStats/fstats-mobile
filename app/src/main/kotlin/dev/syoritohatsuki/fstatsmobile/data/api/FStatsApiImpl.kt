@@ -2,6 +2,8 @@ package dev.syoritohatsuki.fstatsmobile.data.api
 
 import dev.syoritohatsuki.fstatsmobile.data.dto.Metric
 import dev.syoritohatsuki.fstatsmobile.data.dto.Project
+import dev.syoritohatsuki.fstatsmobile.data.dto.ProjectLine
+import dev.syoritohatsuki.fstatsmobile.data.dto.ProjectPie
 import dev.syoritohatsuki.fstatsmobile.data.dto.User
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -28,6 +30,9 @@ class FStatsApiImpl(private val httpClient: HttpClient) : FStatsApi {
     override suspend fun getMetrics(projectId: Int): List<Metric> =
         httpClient.get("metrics/$projectId").body()
 
-    override suspend fun getMetricsCount(projectId: Int): Map<String, Map<String, Int>> =
-        httpClient.get("metrics/$projectId/count").body()
+    override suspend fun getMetricsLine(projectId: Int): ProjectLine =
+        httpClient.get("metrics/${projectId}/line").body()
+
+    override suspend fun getMetricsCount(projectId: Int): ProjectPie =
+        httpClient.get("metrics/$projectId/pie").body()
 }

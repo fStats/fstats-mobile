@@ -112,7 +112,7 @@ fun BottomNavigationBar() {
                 Screens.Project.route,
                 arguments = listOf(navArgument(Screens.Project.argument) { type = NavType.IntType })
             ) {
-                ProjectScreen(navBackStackEntry)
+                ProjectScreen(navController, it)
             }
         }
     }

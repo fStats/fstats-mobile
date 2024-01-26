@@ -18,7 +18,7 @@ fun ProjectsScreen(navController: NavHostController) {
 
     val projectsViewModel: ProjectsViewModel = viewModel()
 
-    val projects by projectsViewModel.movies.collectAsState()
+    val projects by projectsViewModel.projects.collectAsState()
 
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(16.dp),
