@@ -28,6 +28,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -155,7 +156,11 @@ fun ProjectScreen(navController: NavController, navBackStackEntry: NavBackStackE
                 }) {
                     Icon(Icons.Filled.KeyboardArrowLeft, "")
                 }
-                Text(text = type.value.typeToName(), modifier = Modifier.padding(bottom = 2.dp))
+                Text(
+                    text = type.value.typeToName(),
+                    modifier = Modifier.padding(bottom = 2.dp),
+                    textAlign = TextAlign.Center
+                )
                 IconButton(onClick = {
                     scope.launch {
                         pagerState.scrollToPage(pagerState.currentPage + 1)
