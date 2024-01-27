@@ -55,6 +55,9 @@ dependencies {
     //    implementation("co.yml", "ycharts", "2.0.0")
     implementation("com.github.AnyChart:AnyChart-Android:1.1.5")
 
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation("androidx.datastore:datastore:1.0.0")
+
     val ktorVersion = "2.3.1"
     implementation("io.ktor", "ktor-client-core", ktorVersion)
     implementation("io.ktor", "ktor-client-android", ktorVersion)
