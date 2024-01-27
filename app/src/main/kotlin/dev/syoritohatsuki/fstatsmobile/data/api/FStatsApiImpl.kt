@@ -1,5 +1,6 @@
 package dev.syoritohatsuki.fstatsmobile.data.api
 
+import dev.syoritohatsuki.fstatsmobile.data.dto.ApiMessage
 import dev.syoritohatsuki.fstatsmobile.data.dto.Metric
 import dev.syoritohatsuki.fstatsmobile.data.dto.Project
 import dev.syoritohatsuki.fstatsmobile.data.dto.ProjectLine
@@ -9,11 +10,13 @@ import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.post
+import io.ktor.client.request.setBody
 
 class FStatsApiImpl(private val httpClient: HttpClient) : FStatsApi {
-
-    override suspend fun login(username: String, password: String): Map<String, String> =
-        httpClient.post("auth/login").body()
+    override suspend fun login(username: String, password: String): ApiMessage =
+        httpClient.post("auth/login") {
+            setBody(User(username = username, password = password))
+        }.body()
 
     override suspend fun register(username: String, password: String): Boolean =
         httpClient.post("auth/registration").body()
