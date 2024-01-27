@@ -26,12 +26,14 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import dev.syoritohatsuki.fstatsmobile.screens.about.AboutScreen
+import dev.syoritohatsuki.fstatsmobile.screens.profile.ProfileScreen
 import dev.syoritohatsuki.fstatsmobile.screens.project.ProjectScreen
 import dev.syoritohatsuki.fstatsmobile.screens.projects.ProjectsScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BottomNavigationBar() {
+
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
@@ -106,7 +108,7 @@ fun BottomNavigationBar() {
                 ProjectsScreen(navController)
             }
             composable(Screens.Profile.route) {
-                Text(text = "Profile")
+                ProfileScreen(navController)
             }
             composable(
                 Screens.Project.route,
