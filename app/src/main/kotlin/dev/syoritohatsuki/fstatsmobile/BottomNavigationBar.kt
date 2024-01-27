@@ -45,7 +45,7 @@ fun BottomNavigationBar() {
                     titleContentColor = MaterialTheme.colorScheme.primary,
                 ),
                 title = {
-                    Text("fStats")
+                    Text("fStats Mobile")
                 },
                 navigationIcon = {
                     if (navController.previousBackStackEntry != null) IconButton(navController::navigateUp) {
