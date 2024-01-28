@@ -1,6 +1,6 @@
 package dev.syoritohatsuki.fstatsmobile.data.api
 
-import dev.syoritohatsuki.fstatsmobile.data.dto.ApiMessage
+import dev.syoritohatsuki.fstatsmobile.data.dto.AuthToken
 import dev.syoritohatsuki.fstatsmobile.data.dto.Metric
 import dev.syoritohatsuki.fstatsmobile.data.dto.Project
 import dev.syoritohatsuki.fstatsmobile.data.dto.ProjectLine
@@ -9,11 +9,13 @@ import dev.syoritohatsuki.fstatsmobile.data.dto.User
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
+import io.ktor.client.request.header
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
+import io.ktor.http.HttpHeaders
 
 class FStatsApiImpl(private val httpClient: HttpClient) : FStatsApi {
-    override suspend fun login(username: String, password: String): ApiMessage =
+    override suspend fun login(username: String, password: String): AuthToken =
         httpClient.post("auth/login") {
             setBody(User(username = username, password = password))
         }.body()
@@ -38,4 +40,9 @@ class FStatsApiImpl(private val httpClient: HttpClient) : FStatsApi {
 
     override suspend fun getMetricsCount(projectId: Int): ProjectPie =
         httpClient.get("metrics/$projectId/pie").body()
+
+    override suspend fun getUserFavorites(userId: Int, token: String): List<Project> =
+        httpClient.get("users/${userId}/favorite") {
+            header(HttpHeaders.Authorization, "Bearer $token")
+        }.body()
 }
