@@ -11,6 +11,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -19,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavType
@@ -33,6 +35,8 @@ import dev.syoritohatsuki.fstatsmobile.screens.login.LoginScreen
 import dev.syoritohatsuki.fstatsmobile.screens.profile.ProfileScreen
 import dev.syoritohatsuki.fstatsmobile.screens.project.ProjectScreen
 import dev.syoritohatsuki.fstatsmobile.screens.projects.ProjectsScreen
+import dev.syoritohatsuki.fstatsmobile.ui.theme.Blue
+import dev.syoritohatsuki.fstatsmobile.ui.theme.Dark
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -66,7 +70,7 @@ fun BottomNavigationBar() {
                     if (navController.previousBackStackEntry == null) IconButton({
                         navController.navigate(Screens.About.route)
                     }) {
-                        Icon(Icons.Filled.Info, "About")
+                        Icon(Icons.Filled.Info, "About", tint = Color.White)
                     }
                 }
             )
@@ -95,7 +99,13 @@ fun BottomNavigationBar() {
                                 launchSingleTop = true
                                 restoreState = true
                             }
-                        }
+                        }, colors = NavigationBarItemDefaults.colors(
+                            selectedIconColor = Blue,
+                            selectedTextColor = Blue,
+                            indicatorColor = Dark,
+                            unselectedIconColor = Color.LightGray,
+                            unselectedTextColor = Color.LightGray,
+                        )
                     )
                 }
             }

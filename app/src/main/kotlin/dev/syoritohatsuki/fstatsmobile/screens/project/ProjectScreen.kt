@@ -3,7 +3,6 @@ package dev.syoritohatsuki.fstatsmobile.screens.project
 import android.widget.ProgressBar
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -77,45 +76,53 @@ fun ProjectScreen(navController: NavController, navBackStackEntry: NavBackStackE
 
     Scaffold(
         topBar = {
-            AndroidView(factory = { context ->
-                AnyChartView(context).apply {
-                    AnyChart.line().let { cartesian ->
-                        cartesian.xAxis(0).ticks(false)
-                            .labels().width(170).hAlign("center").format(
-                                "function() {\n" +
-                                        "return this.value.split(' ')[0];\n" +
-                                        "}"
-                            )
-                        cartesian.line(Set.instantiate().let { set ->
-                            set.data(projectLine!!.metricLine.map { entry ->
-                                ValueDataEntry(
-                                    OffsetDateTime.parse(
-                                        entry.key,
-                                        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ssX")
-                                    ).format(
-                                        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-                                    ), entry.value
+            AndroidView(
+                factory = { context ->
+                    AnyChartView(context).apply {
+                        setBackgroundColor("#1E1E1E")
+                        AnyChart.line().let { cartesian ->
+                            cartesian.background(false)
+                            cartesian.xAxis(0).ticks(false)
+                                .labels().width(170).hAlign("center").format(
+                                    "function() {\n" +
+                                            "return this.value.split(' ')[0];\n" +
+                                            "}"
                                 )
-                            })
-                            set.mapAs("{x: 'x', value: 'value'}")
-                        }).let { line ->
-                            line.color("#3498db")
-                            line.name("Servers: ")
-                            line.tooltip().enabled(true)
-                            setChart(cartesian)
+                            cartesian.line(Set.instantiate().let { set ->
+                                set.data(projectLine!!.metricLine.map { entry ->
+                                    ValueDataEntry(
+                                        OffsetDateTime.parse(
+                                            entry.key,
+                                            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ssX")
+                                        ).format(
+                                            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+                                        ), entry.value
+                                    )
+                                })
+                                set.mapAs("{x: 'x', value: 'value'}")
+                            }).let { line ->
+                                line.color("#3498db")
+                                line.name("Servers: ")
+                                line.tooltip().enabled(true)
+                                setChart(cartesian)
+                            }
                         }
                     }
-                }
-            }, modifier = Modifier.height(160.dp))
+                }, modifier = Modifier
+                    .height(160.dp)
+                    .padding(8.dp, 8.dp, 8.dp, 0.dp)
+            )
         },
         content = {
-            Box(modifier = Modifier.padding(it)) {
-                HorizontalPager(state = pagerState) { page ->
-                    type.value = projectPie!!.metricPie.keys.elementAt(page)
-                    projectPie!!.metricPie[type.value]?.let { values ->
-                        AndroidView(factory = { context ->
+            HorizontalPager(state = pagerState) { page ->
+                type.value = projectPie!!.metricPie.keys.elementAt(page)
+                projectPie!!.metricPie[type.value]?.let { values ->
+                    AndroidView(
+                        factory = { context ->
                             AnyChartView(context).apply {
+                                setBackgroundColor("#1E1E1E")
                                 AnyChart.pie().let { pie ->
+                                    pie.background("#1E1E1E")
                                     pie.palette(
                                         arrayOf(
                                             "#e74c3c",
@@ -134,8 +141,11 @@ fun ProjectScreen(navController: NavController, navBackStackEntry: NavBackStackE
                                     setChart(pie)
                                 }
                             }
-                        }, modifier = Modifier.fillMaxHeight())
-                    }
+                        }, modifier = Modifier
+                            .fillMaxHeight()
+                            .padding(it)
+                            .padding(8.dp, 8.dp, 8.dp, 0.dp)
+                    )
                 }
             }
         },
