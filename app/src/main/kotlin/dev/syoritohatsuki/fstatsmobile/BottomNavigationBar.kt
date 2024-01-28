@@ -16,8 +16,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -26,6 +28,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import dev.syoritohatsuki.fstatsmobile.screens.about.AboutScreen
+import dev.syoritohatsuki.fstatsmobile.screens.favorite.FavoriteScreen
+import dev.syoritohatsuki.fstatsmobile.screens.login.LoginScreen
 import dev.syoritohatsuki.fstatsmobile.screens.profile.ProfileScreen
 import dev.syoritohatsuki.fstatsmobile.screens.project.ProjectScreen
 import dev.syoritohatsuki.fstatsmobile.screens.projects.ProjectsScreen
@@ -37,6 +41,10 @@ fun BottomNavigationBar() {
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
+
+    val context = LocalContext.current
+    val dataStore = StoreUserToken(context)
+    val token = dataStore.getToken.collectAsState("")
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -102,13 +110,13 @@ fun BottomNavigationBar() {
                 AboutScreen(navController)
             }
             composable(Screens.Favorite.route) {
-                Text(text = "Favorite")
+                if (token.value.isNullOrBlank()) LoginScreen() else FavoriteScreen(navController)
             }
             composable(Screens.Projects.route) {
                 ProjectsScreen(navController)
             }
             composable(Screens.Profile.route) {
-                ProfileScreen(navController)
+                if (token.value.isNullOrBlank()) LoginScreen() else ProfileScreen(navController)
             }
             composable(
                 Screens.Project.route,
