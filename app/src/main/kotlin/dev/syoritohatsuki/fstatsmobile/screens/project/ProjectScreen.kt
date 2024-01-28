@@ -159,7 +159,7 @@ fun ProjectScreen(navController: NavController, navBackStackEntry: NavBackStackE
                     scope.launch {
                         pagerState.scrollToPage(pagerState.currentPage - 1)
                     }
-                }) {
+                }, enabled = pagerState.currentPage > 0) {
                     Icon(Icons.Filled.KeyboardArrowLeft, "")
                 }
                 Text(
@@ -171,7 +171,7 @@ fun ProjectScreen(navController: NavController, navBackStackEntry: NavBackStackE
                     scope.launch {
                         pagerState.scrollToPage(pagerState.currentPage + 1)
                     }
-                }) {
+                }, enabled = pagerState.currentPage < pagerState.pageCount - 1) {
                     Icon(Icons.Filled.KeyboardArrowRight, "")
                 }
             }
