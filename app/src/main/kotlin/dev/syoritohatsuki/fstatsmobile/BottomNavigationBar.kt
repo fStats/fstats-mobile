@@ -107,16 +107,16 @@ fun BottomNavigationBar() {
             modifier = Modifier.padding(paddingValues = paddingValues)
         ) {
             composable(Screens.About.route) {
-                AboutScreen(navController)
+                AboutScreen()
             }
             composable(Screens.Favorite.route) {
-                if (token.value.isNullOrBlank()) LoginScreen() else FavoriteScreen(navController)
+                if (token.value.isBlank()) LoginScreen() else FavoriteScreen(navController)
             }
             composable(Screens.Projects.route) {
                 ProjectsScreen(navController)
             }
             composable(Screens.Profile.route) {
-                if (token.value.isNullOrBlank()) LoginScreen() else ProfileScreen(navController)
+                if (token.value.isBlank()) LoginScreen() else ProfileScreen(navController)
             }
             composable(
                 Screens.Project.route,

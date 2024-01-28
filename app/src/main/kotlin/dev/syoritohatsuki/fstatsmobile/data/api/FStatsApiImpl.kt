@@ -20,9 +20,6 @@ class FStatsApiImpl(private val httpClient: HttpClient) : FStatsApi {
             setBody(User(username = username, password = password))
         }.body()
 
-    override suspend fun register(username: String, password: String): Boolean =
-        httpClient.post("auth/registration").body()
-
     override suspend fun getUsers(): List<User> =
         httpClient.get("users").body()
 

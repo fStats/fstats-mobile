@@ -9,7 +9,6 @@ import dev.syoritohatsuki.fstatsmobile.data.dto.User
 
 interface FStatsApi {
     suspend fun login(username: String, password: String): AuthToken
-    suspend fun register(username: String, password: String): Boolean
     suspend fun getUsers(): List<User>
     suspend fun getProjects(): List<Project>
     suspend fun getProjectByUserId(userId: Int): List<Project>

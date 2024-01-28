@@ -15,7 +15,7 @@ class StoreUserToken(private val context: Context) {
         val USER_TOKEN_KEY = stringPreferencesKey("user_token")
     }
 
-    val getToken: Flow<String?> = context.dataStorage.data.map { preferences ->
+    val getToken: Flow<String> = context.dataStorage.data.map { preferences ->
         preferences[USER_TOKEN_KEY] ?: ""
     }
 

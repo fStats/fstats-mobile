@@ -9,5 +9,5 @@ typealias MetricLine = Map<String, Int>
 data class ProjectLine(
     val project: Project,
     @SerialName("metric_line")
-    val metricLine: MetricLine
+    val metricLine: MetricLine = emptyMap()
 )

@@ -48,7 +48,7 @@ fun ProfileScreen(navController: NavController) {
             Json.parseToJsonElement(
                 String(
                     Base64.decode(
-                        token.value!!.split(".")[1],
+                        token.value.split(".")[1],
                         Base64.URL_SAFE
                     ), charset("UTF-8")
                 )

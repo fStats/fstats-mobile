@@ -37,7 +37,7 @@ fun FavoriteScreen(navController: NavController) {
         Json.parseToJsonElement(
             String(
                 Base64.decode(
-                    token.value!!.split(".")[1],
+                    token.value.split(".")[1],
                     Base64.URL_SAFE
                 ), charset("UTF-8")
             )
@@ -48,8 +48,8 @@ fun FavoriteScreen(navController: NavController) {
 
     Log.e("FAVORITE", "!")
 
-    if (json != null && !token.value.isNullOrBlank())
-        favoriteViewModel.getUserFavorites(json.jsonObject["id"]!!.jsonPrimitive.int, token.value!!)
+    if (json != null && token.value.isNotBlank())
+        favoriteViewModel.getUserFavorites(json.jsonObject["id"]!!.jsonPrimitive.int, token.value)
 
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(16.dp),

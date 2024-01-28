@@ -9,5 +9,5 @@ typealias MetricPie = Map<String, Map<String?, Int>>
 data class ProjectPie(
     val project: Project,
     @SerialName("metric_pie")
-    val metricPie: MetricPie
+    val metricPie: MetricPie = emptyMap()
 )
