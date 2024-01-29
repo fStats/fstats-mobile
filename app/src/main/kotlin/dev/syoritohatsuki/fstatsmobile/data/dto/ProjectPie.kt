@@ -7,7 +7,7 @@ typealias MetricPie = Map<String, Map<String?, Int>>
 
 @Serializable
 data class ProjectPie(
-    val project: Project,
+    val project: Project = Project(),
     @SerialName("metric_pie")
     val metricPie: MetricPie = emptyMap()
 )

@@ -16,11 +16,11 @@ class ProjectViewModel(private val projectId: Int) : ViewModel() {
 
     private val api by KoinJavaComponent.inject<FStatsApi>(FStatsApi::class.java)
 
-    private val _projectPie = MutableStateFlow<ProjectPie?>(null)
-    val projectPie: StateFlow<ProjectPie?> = _projectPie
+    private val _projectPie = MutableStateFlow(ProjectPie())
+    val projectPie: StateFlow<ProjectPie> = _projectPie
 
-    private val _projectLine = MutableStateFlow<ProjectLine?>(null)
-    val projectLine: StateFlow<ProjectLine?> = _projectLine
+    private val _projectLine = MutableStateFlow(ProjectLine())
+    val projectLine: StateFlow<ProjectLine> = _projectLine
 
     init {
         fetchProjectPie()

@@ -3,6 +3,7 @@ package dev.syoritohatsuki.fstatsmobile.screens.projects
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -25,10 +26,8 @@ fun ProjectsScreen(navController: NavHostController) {
         horizontalAlignment = Alignment.CenterHorizontally,
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
     ) {
-        projects.forEach {
-            item {
-                ProjectItem(navController, it)
-            }
+        items(projects) {
+            ProjectItem(navController, it)
         }
     }
 }

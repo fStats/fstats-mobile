@@ -23,8 +23,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import dev.syoritohatsuki.fstatsmobile.StoreUserToken
 import dev.syoritohatsuki.fstatsmobile.data.dto.ApiMessage
+import dev.syoritohatsuki.fstatsmobile.data.store.StoreUserToken
 import dev.syoritohatsuki.fstatsmobile.screens.login.viewmodel.LoginViewModel
 import io.ktor.client.call.body
 import io.ktor.client.plugins.ClientRequestException

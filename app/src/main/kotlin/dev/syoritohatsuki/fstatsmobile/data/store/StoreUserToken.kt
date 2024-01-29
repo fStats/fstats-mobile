@@ -1,4 +1,4 @@
-package dev.syoritohatsuki.fstatsmobile
+package dev.syoritohatsuki.fstatsmobile.data.store
 
 import android.content.Context
 import androidx.datastore.core.DataStore
