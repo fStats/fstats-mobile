@@ -11,13 +11,24 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
+import dev.syoritohatsuki.fstatsmobile.BottomNavigationItem
 import dev.syoritohatsuki.fstatsmobile.Screens
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Header(navController: NavHostController) {
+
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentDestination = navBackStackEntry?.destination
+
+    val isRootRoute = BottomNavigationItem().bottomNavigationItems().any {
+        it.route == currentDestination?.route
+    }
+
     TopAppBar(
         colors = TopAppBarDefaults.smallTopAppBarColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer,
@@ -27,12 +38,12 @@ fun Header(navController: NavHostController) {
             Text("fStats Mobile")
         },
         navigationIcon = {
-            if (navController.previousBackStackEntry != null) IconButton(navController::navigateUp) {
+            if (!isRootRoute) IconButton(navController::navigateUp) {
                 Icon(Icons.Filled.ArrowBack, "")
             }
         },
         actions = {
-            if (navController.previousBackStackEntry == null) IconButton({
+            if (isRootRoute) IconButton({
                 navController.navigate(Screens.About.route)
             }) {
                 Icon(Icons.Filled.Info, "About", tint = Color.White)
