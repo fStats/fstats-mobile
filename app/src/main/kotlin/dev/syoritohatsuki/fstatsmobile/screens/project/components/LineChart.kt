@@ -1,6 +1,5 @@
 package dev.syoritohatsuki.fstatsmobile.screens.project.components
 
-import android.util.Log
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -21,10 +20,8 @@ fun LineChart(projectLine: ProjectLine) {
     AndroidView(
         factory = { context ->
             AnyChartView(context).apply {
-                Log.e("LineChart: ", "1")
                 setBackgroundColor("#1E1E1E")
                 AnyChart.line().let { cartesian ->
-                    Log.e("LineChart: ", "2")
                     cartesian.background(false)
                     cartesian.xAxis(0).ticks(false)
                         .labels().width(170).hAlign("center").format(
@@ -33,11 +30,7 @@ fun LineChart(projectLine: ProjectLine) {
                                     "}"
                         )
                     cartesian.line(Set.instantiate().let { set ->
-                        Log.e("LineChart: ", "3")
-                        Log.e("LineChart: ", projectLine.metricLine.size.toString())
                         set.data(projectLine.metricLine.map { entry ->
-                            Log.e("LineChart: ", "4")
-                            Log.d("LineChart: ", "${entry.key} | ${entry.value}")
                             ValueDataEntry(
                                 OffsetDateTime.parse(
                                     entry.key,
@@ -49,7 +42,6 @@ fun LineChart(projectLine: ProjectLine) {
                         })
                         set.mapAs("{x: 'x', value: 'value'}")
                     }).let { line ->
-                        Log.e("LineChart: ", "5")
                         line.color("#3498db")
                         line.name("Servers: ")
                         line.tooltip().enabled(true)
