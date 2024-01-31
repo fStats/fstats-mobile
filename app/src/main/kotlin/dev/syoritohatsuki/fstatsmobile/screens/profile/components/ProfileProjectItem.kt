@@ -76,7 +76,11 @@ fun ProfileProjectItem(navController: NavController, project: Project) {
     )
 
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable {
+                navController.navigate("project/${project.id}")
+            },
         elevation = CardDefaults.cardElevation(
             defaultElevation = 4.dp
         ),
@@ -87,9 +91,7 @@ fun ProfileProjectItem(navController: NavController, project: Project) {
                 .padding(8.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Column(modifier = Modifier.clickable {
-                navController.navigate("project/${project.id}")
-            }) {
+            Column {
                 Text(
                     overflow = TextOverflow.Ellipsis,
                     fontSize = 20.sp,
