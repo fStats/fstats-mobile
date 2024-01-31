@@ -49,6 +49,7 @@ fun CreateProjectDialog(
 
                 else -> OutlinedTextField(
                     value = projectName,
+                    singleLine = true,
                     placeholder = {
                         Text(text = "Project name", color = Color.LightGray)
                     },
@@ -65,6 +66,7 @@ fun CreateProjectDialog(
         },
         confirmButton = {
             Button(
+                enabled = projectName.isNotBlank(),
                 onClick = {
                     onConfirmation(projectName)
                 }
