@@ -35,7 +35,8 @@ fun ProjectsScreen(navController: NavHostController) {
     var projectName by remember { mutableStateOf("") }
 
     val projects by projectsViewModel.projects.collectAsState()
-    val filteredProjects = projects.filter { it.name.lowercase().contains(projectName.lowercase()) }
+    val filteredProjects =
+        projects.filter { it.name.lowercase().contains(projectName.lowercase()) && it.isVisible }
 
     Column {
         OutlinedTextField(
