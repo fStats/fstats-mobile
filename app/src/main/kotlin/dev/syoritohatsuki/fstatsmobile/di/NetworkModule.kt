@@ -30,7 +30,7 @@ private fun provideKtorClient(): HttpClient {
         install(HttpCache)
         defaultRequest {
             url {
-                host = "api.fstats.dev/v2"
+                host = "api.fstats.dev/v3"
                 protocol = URLProtocol.HTTPS
                 contentType(ContentType.Application.Json)
             }

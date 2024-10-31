@@ -34,8 +34,7 @@ import dev.syoritohatsuki.fstatsmobile.screens.project.viewmodel.ProjectViewMode
 
 fun ProjectScreen(navController: NavController, navBackStackEntry: NavBackStackEntry) {
 
-
-    val pagerState = rememberPagerState(pageCount = { 6 })
+    val pagerState = rememberPagerState(pageCount = { 7 })
 
     val type = remember { mutableStateOf("") }
 
@@ -48,43 +47,38 @@ fun ProjectScreen(navController: NavController, navBackStackEntry: NavBackStackE
 
     val projectViewModel: ProjectViewModel = viewModel(factory = ProjectViewModelFactory(projectId))
 
-    val projectPie by projectViewModel.projectPie.collectAsState()
-    val projectLine by projectViewModel.projectLine.collectAsState()
+    val metricPie by projectViewModel.metricPie.collectAsState()
+    val metricLine by projectViewModel.metricLine.collectAsState()
 
-    Scaffold(
-        topBar = {
-            if (projectLine.metricLine.isNotEmpty()) {
-                LineChart(projectLine)
-            } else Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(text = "Project don't have data yet for display")
-            }
-        },
-        content = {
-            if (projectPie.metricPie.isNotEmpty()) {
-                HorizontalPager(state = pagerState) { page ->
-                    type.value = projectPie.metricPie.keys.elementAtOrElse(page) { "" }
-                    projectPie.metricPie[type.value]?.let { values ->
-                        PieChart(values, it)
-                    }
+    Scaffold(topBar = {
+        if (metricLine.timestamps.isNotEmpty()) LineChart(metricLine) else Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(text = "Project don't have data yet for display")
+        }
+    }, content = {
+        if (metricPie.isNotEmpty()) {
+            HorizontalPager(state = pagerState) { page ->
+                type.value = metricPie.keys.elementAtOrElse(page) { "" }
+                metricPie[type.value]?.let { values ->
+                    PieChart(values, it)
                 }
-            } else Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(it),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(text = "Project don't have data for last 30 minute to display")
             }
-        },
-        bottomBar = {
-            if (projectPie.metricPie.isNotEmpty()) PagerNavigator(type, pagerState)
-        }, modifier = Modifier.fillMaxSize()
+        } else Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(it),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(text = "Project don't have data for last 30 minute to display")
+        }
+    }, bottomBar = {
+        if (metricPie.isNotEmpty()) PagerNavigator(type, pagerState)
+    }, modifier = Modifier.fillMaxSize()
     )
 }

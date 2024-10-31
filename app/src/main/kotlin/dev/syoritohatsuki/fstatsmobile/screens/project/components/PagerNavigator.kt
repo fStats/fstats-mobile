@@ -62,6 +62,7 @@ private fun String.typeToName(): String {
         "os" -> "Operation System"
         "location" -> "Location"
         "fabric_api_version" -> "Fabric API"
+        "isServerSide" -> "Side"
         else -> this
     }
 }
